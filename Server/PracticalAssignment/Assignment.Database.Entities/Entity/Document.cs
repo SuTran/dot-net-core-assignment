@@ -24,6 +24,8 @@ namespace PracticalAssignment.Database.Entities.Entity
         public string Description { get; set; }
 
         [ForeignKey("LibraryId")]
+        public Guid LibraryId { get; set; }
+
         public virtual Library Library { get; set; } // FK_Document_Library
     }
 }

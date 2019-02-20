@@ -77,7 +77,7 @@ namespace PracticalAssignment.WebAPI.Controllers
             }
         }
 
-        [Route("Insert")]
+        [Route("insert")]
         [HttpPost]
         public async Task<IActionResult> InsertAsync(OutputLibraryViewModel dto)
         {

@@ -21,4 +21,8 @@
     <ProjectReference Include="..\PracticalAssignment.Services\PracticalAssignment.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Java Core\" />
+  </ItemGroup>
+
 </Project>

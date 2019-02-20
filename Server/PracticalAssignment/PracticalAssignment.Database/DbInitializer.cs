@@ -36,6 +36,24 @@ namespace PracticalAssignment.Database
                 };
                 _context.Users.AddRange(listUser);
             }
+
+            if (_context.Libraries.Count() == 0)
+            {
+                List<Library> listLib = new List<Library>()
+                {
+                    new Library() {
+                        Id=Guid.NewGuid(),
+                        Name="test",
+                        Description="test"
+                    },
+                     new Library() {
+                        Id=Guid.NewGuid(),
+                        Name="test2",
+                        Description="test2"
+                    },
+                };
+                _context.Libraries.AddRange(listLib);
+            }
             await _context.SaveChangesAsync();
         }
     }

@@ -9,6 +9,10 @@ namespace PracticalAssignment.Infrastructure.ContanstCommon
         public const string EMPTY_NAME = "Please enter library name";
         public const string DUPLICATE_NAME = "Duplicate library name";
 
+        public const string FILE_NULL = "File not selected";
+        public const string UPLOAD_SUCCESS = "Upload Successful";
+        public const string UPLOAD_FAIL = "Library not found";
+
 
         public const string SAVE_SUCCESS = "Save successfully";
         public const string SAVE_FAIL = "Save fail";
