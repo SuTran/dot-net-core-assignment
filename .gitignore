@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Server/PracticalAssignment/.vs/PracticalAssignment/v15/Server/sqlite3
+
+Server/PracticalAssignment/PracticalAssignment\.Database/bin/
+Server/PracticalAssignment/PracticalAssignment\.Database/obj/
+
+Server/PracticalAssignment/PracticalAssignment\.WebAPI/bin/
+Server/PracticalAssignment/PracticalAssignment\.WebAPI/obj/
+
