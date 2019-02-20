@@ -18,6 +18,9 @@ using PracticalAssignment.Database;
 using PracticalAssignment.Database.EntityFrameworkCore;
 using PracticalAssignment.Database.Repositories;
 using PracticalAssignment.Database.UnitOfWorks;
+using PracticalAssignment.Services.ImplServices;
+using PracticalAssignment.Services.InterfaceServices;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace PracticalAssignment.WebAPI
 {
@@ -41,10 +44,23 @@ namespace PracticalAssignment.WebAPI
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
+            services.AddScoped<ILibraryService, LibraryService>();
 
             services.AddTransient<DbInitializer>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "My API",
+                    Description = "My First ASP.NET Core Web API",
+                    TermsOfService = "None",
+                    Contact = new Contact() { Name = "Practical Assignment", Email = "blackangelofdeath944@gmail.com", Url = "www.facebook.com" }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +77,16 @@ namespace PracticalAssignment.WebAPI
             }
 
             app.UseHttpsRedirection();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
             app.UseMvc();
         }
     }

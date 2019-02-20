@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InterfaceServices\" />
-    <Folder Include="ImplServices\" />
+    <ProjectReference Include="..\PracticalAssignment.Database\PracticalAssignment.Database.csproj" />
+    <ProjectReference Include="..\PracticalAssignment.DTO\PracticalAssignment.DTO.csproj" />
+    <ProjectReference Include="..\PracticalAssignment.Infrastructure\PracticalAssignment.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ namespace PracticalAssignment.Database.Repositories
 {
     public interface IRepository<T>
     {
-        T GetById(int id);
+        T GetById(object id);
         bool GetAny(Expression<Func<T, bool>> predicate);
         IQueryable<T> GetAll();
         List<T> GetList();

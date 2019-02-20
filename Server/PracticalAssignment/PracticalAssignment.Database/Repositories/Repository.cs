@@ -46,7 +46,7 @@ namespace PracticalAssignment.Database.Repositories
             return _dbSet.AsQueryable().Any(predicate);
         }
 
-        public T GetById(int id)
+        public T GetById(object id)
         {
             return _dbSet.Find(id);
         }

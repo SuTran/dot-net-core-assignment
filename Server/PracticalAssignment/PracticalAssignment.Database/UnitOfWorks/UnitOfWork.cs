@@ -1,22 +1,38 @@
-﻿using PracticalAssignment.Database.EntityFrameworkCore;
+﻿using PracticalAssignment.Database.Entities.Entity;
+using PracticalAssignment.Database.EntityFrameworkCore;
+using PracticalAssignment.Database.Repositories;
 
 namespace PracticalAssignment.Database.UnitOfWorks
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly AppDbContext _context;
-        public UnitOfWork(AppDbContext context)
+        private IRepository<Library> _library;
+
+        private readonly AppDbContext _dbContext;
+        public UnitOfWork(AppDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
-        public void Commit()
+
+        public IRepository<Library> Libraries
         {
-            _context.SaveChanges();
+            get
+            {
+                if (_library == null)
+                    _library = new Repository<Library>(_dbContext);
+
+                return _library;
+            }
+        }
+
+        public void Save()
+        {
+            _dbContext.SaveChanges();
         }
 
         public void Dispose()
         {
-            _context.Dispose();
+            _dbContext.Dispose();
         }
     }
 }
