@@ -1,3 +1,68 @@
-<p>
-  bind-data works!
-</p>
+<div class="body-main">
+  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Library</button>
+
+  <div class="data-bind">
+    <p class="h2 custom-h2">List Library</p>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Upload File</th>
+          <th scope="col">Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of libraryOutput; index as i">
+          <td>{{i+1}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.description}}</td>
+          <td>
+            <form>
+              <div class="form-group row">
+                <input type="file" class="col-10 form-control-file" id="exampleFormControlFile1">
+                <button type="button" class="col-2 btn btn-default" (click)="UploadFile()">
+                  <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                </button>
+              </div>
+            </form>
+          </td>
+          <td>
+            <button type="button" class="btn btn-default" [routerLink]="[ '/detail-main-child', item.id ]">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- ng-modal -->
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="color: blue">Add New Library</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="exampleInputName">Name</label>
+          <input type="text" class="form-control" [(ngModel)]="libraryInput.name" id="exampleInputName"
+            [ngModelOptions]="{standalone: true}" aria-describedby="emailHelp" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputDescription">Description</label>
+          <input type="text" class="form-control" [(ngModel)]="libraryInput.description" [ngModelOptions]="{standalone: true}"
+            id="exampleInputDescription" placeholder="Enter description">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');callAPI()">Save</button>
+    </div>
+  </ng-template>
+</div>

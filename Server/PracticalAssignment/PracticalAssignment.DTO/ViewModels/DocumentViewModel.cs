@@ -11,4 +11,9 @@ namespace PracticalAssignment.DTO.ViewModels
         public string Description { get; set; }
         public Guid LibraryId { get; set; }
     }
+
+    public class DocumentOutputViewModel: DocumentViewModel
+    {
+        public Guid Id { get; set; }
+    }
 }

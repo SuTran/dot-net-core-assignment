@@ -8,6 +8,7 @@ using PracticalAssignment.Services.InterfaceServices;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace PracticalAssignment.Services.ImplServices
@@ -20,6 +21,21 @@ namespace PracticalAssignment.Services.ImplServices
         {
             _uow = uow;
             _libraryService = libraryService;
+        }
+
+        public List<DocumentOutputViewModel> GetAllByLibraryId(Guid libraryId)
+        {
+            var query = _uow.Documents.GetAll()
+                .Where(x=>x.LibraryId==libraryId)
+                .Select(x => new DocumentOutputViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    FileUrl=x.FileUrl,
+                    LibraryId=x.LibraryId,
+                    Description = x.Description
+                }).ToList();
+            return query;
         }
 
         public void UploadFile(IFormFile fileUrl, Guid libraryId,

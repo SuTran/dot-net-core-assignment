@@ -1,0 +1,20 @@
+.body-main {
+    margin: 20px
+}
+
+.data-bind {
+    margin: 10px;
+}
+
+.custom-h2 {
+    text-align: center;
+    color: red;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    /* do bong */
+    box-shadow: 5px 5px 5px #666;
+    -moz-box-shadow: 5px 5px 5px #666;
+    -webkit-box-shadow: 5px 5px 5px #666;
+    margin-right: 5px;
+    padding: 20px;
+}
