@@ -1,0 +1,15 @@
+1. Setup .NET Core environment
+	+ Build Structure App				8h
+	+ Intergration Api Upload Document		
+		.Api for libraries 			2h
+		.Api for Document			2h
+		.Api login with two roles		2h
+
+2.Setup AngularJS on front-end side
+	+ Build Structure App				4h
+	+ Intergration Api Upload Document	
+		.Api for libraries 			2h
+		.Api for Document			2h
+		.Api login with two roles		2h	
+
+Selt test						4h

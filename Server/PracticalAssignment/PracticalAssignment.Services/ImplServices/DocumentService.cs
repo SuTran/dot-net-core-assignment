@@ -38,12 +38,11 @@ namespace PracticalAssignment.Services.ImplServices
             return query;
         }
 
-        public void UploadFile(IFormFile fileUrl, Guid libraryId,
-            out bool status, out string message)
+        public void UploadFile(FileInputViewModel model,out bool status, out string message)
         {
             try
             {
-                if (fileUrl == null || fileUrl.Length == 0)
+                if (model.FileUrl == null || model.FileUrl.Length == 0)
                 {
                     status = false;
                     message = MesssageContant.FILE_NULL;
@@ -51,7 +50,7 @@ namespace PracticalAssignment.Services.ImplServices
                 else
                 {
 
-                    var libData = _libraryService.GetLibraryById(libraryId);
+                    var libData = _libraryService.GetLibraryById(model.LibraryId);
                     if (libData != null)
                     {
                         var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/");
@@ -59,20 +58,20 @@ namespace PracticalAssignment.Services.ImplServices
                         var folder = Directory.CreateDirectory(rootPath + libData.Name);
                         //var subPath = Path.Combine(rootPath, libData.Name);
                         var newpath = Path.Combine(rootPath, libData.Name);
-                        var path = Path.Combine(newpath, fileUrl.GetFilename());
+                        var path = Path.Combine(newpath, model.FileUrl.GetFilename());
 
                         using (var stream = new FileStream(path, FileMode.Create))
                         {
-                            fileUrl.CopyToAsync(stream);
+                            model.FileUrl.CopyToAsync(stream);
                         }
-                        var model = new DocumentViewModel
+                        var dto = new DocumentViewModel
                         {
-                            LibraryId = libraryId,
+                            LibraryId = model.LibraryId,
                             FileUrl = path,
-                            Name = fileUrl.GetFilename(),
+                            Name = model.FileUrl.GetFilename(),
                             Description = "Demo"
                         };
-                        Insert(model);
+                        Insert(dto);
                         status = true;
                         message = MesssageContant.UPLOAD_SUCCESS;
                     }

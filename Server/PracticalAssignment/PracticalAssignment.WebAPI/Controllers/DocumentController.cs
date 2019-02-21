@@ -51,12 +51,12 @@ namespace PracticalAssignment.WebAPI.Controllers
 
         [Route("upload-file")]
         [HttpPost]
-        public async Task<IActionResult> InsertAsync(IFormFile fileUrl, Guid libraryId)
-        {
+        public async Task<IActionResult> InsertV1Async([FromForm]FileInputViewModel model)
+        { 
             var status = false;
             var message = string.Empty;
             var Result = new Res();
-            await Task.Run(() => _documentService.UploadFile(fileUrl,libraryId, out status, out message));
+            await Task.Run(() => _documentService.UploadFile(model, out status, out message));
             if (status)
             {
                 Result.Status = status;
