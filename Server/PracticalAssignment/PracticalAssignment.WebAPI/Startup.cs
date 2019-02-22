@@ -56,6 +56,8 @@ namespace PracticalAssignment.WebAPI
 
             services.AddScoped<ILibraryService, LibraryService>();
             services.AddScoped<IDocumentService, DocumentService>();
+            services.AddScoped<IUserService, UserService>();
+
 
             services.AddTransient<DbInitializer>();
 

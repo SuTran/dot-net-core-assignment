@@ -51,7 +51,7 @@ namespace PracticalAssignment.WebAPI.Controllers
 
         [Route("upload-file")]
         [HttpPost]
-        public async Task<IActionResult> InsertV1Async([FromForm]FileInputViewModel model)
+        public async Task<IActionResult> InsertAsync([FromForm]FileInputViewModel model)
         { 
             var status = false;
             var message = string.Empty;

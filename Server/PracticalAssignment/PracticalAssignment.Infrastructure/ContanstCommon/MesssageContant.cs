@@ -22,6 +22,9 @@ namespace PracticalAssignment.Infrastructure.ContanstCommon
 
         public const string DELETE_SUCCESS = "Delete successfully";
         public const string DELETE_FAIL = "Delete fail";
+
+        public const string LOGIN_SUCCESS = "Login successfully";
+        public const string LOGIN_FAIL = "Incorrect username";
     }
 
     public struct MessageResponse
