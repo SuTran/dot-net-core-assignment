@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PracticalAssignment.DTO.ViewModels;
 using PracticalAssignment.Infrastructure.ContanstCommon;
 using PracticalAssignment.Infrastructure.LibCommon;
 using PracticalAssignment.Services.InterfaceServices;
@@ -22,7 +23,7 @@ namespace PracticalAssignment.WebAPI.Controllers
 
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> LoginAsync(string username)
+        public async Task<IActionResult> LoginAsync(LoginViewModel username)
         {
             var status = false;
             var message = string.Empty;

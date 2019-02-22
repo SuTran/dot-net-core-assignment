@@ -55,8 +55,6 @@ export class BindDataComponent implements OnInit {
           this.toastr.successToastr(res.message, 'Success!');
           this.libraryOutput.push(library);
         }
-        console.log('res', res);
-
       });
   }
 

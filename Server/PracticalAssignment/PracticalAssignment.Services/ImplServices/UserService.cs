@@ -8,7 +8,7 @@ using System.Text;
 
 namespace PracticalAssignment.Services.ImplServices
 {
-    public class UserService: IUserService
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork _uow;
         public UserService(IUnitOfWork uow)
@@ -16,9 +16,9 @@ namespace PracticalAssignment.Services.ImplServices
             _uow = uow;
         }
 
-        public void Login(string username, out bool status, out string message)
+        public void Login(LoginViewModel model, out bool status, out string message)
         {
-            var data = CheckUser(username);
+            var data = CheckUser(model.Username);
             if (data)
             {
                 status = true;

@@ -7,7 +7,7 @@ namespace PracticalAssignment.Services.InterfaceServices
 {
     public interface IUserService
     {
-        void Login(string username, out bool status, out string message);
-        UserViewModel GetUserById(string username);
+        void Login(LoginViewModel model, out bool status, out string message);
+        UserViewModel GetUserById(string model);
     }
 }

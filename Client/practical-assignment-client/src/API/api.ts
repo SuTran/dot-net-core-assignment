@@ -12,4 +12,8 @@ export const Urls = {
         GetDataByIdAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Document/get-all/',
         UploadFileAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Document/upload-file',
     },
+    UserApi: {
+        LoginAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'User/login',
+        GetUserByIdAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'User/'
+    }
 };

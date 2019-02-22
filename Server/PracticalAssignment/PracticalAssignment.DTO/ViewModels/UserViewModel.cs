@@ -10,4 +10,9 @@ namespace PracticalAssignment.DTO.ViewModels
         public string Username { get; set; }
         public bool IsAdmin { get; set; }
     }
+
+    public class LoginViewModel
+    {
+        public string Username { get; set; }
+    }
 }

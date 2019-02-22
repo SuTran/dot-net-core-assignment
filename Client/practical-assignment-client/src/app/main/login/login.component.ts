@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { UserModel } from 'src/app/models/userModel';
+import { log } from 'util';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +13,16 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public userName: string;
-  public password: string;
-  public error = 0;
+  public user: UserModel;
   constructor(
-    public routerService: Router
+    public routerService: Router,
+    private userService: UserService,
+    public toastr: ToastrManager
   ) { }
 
   ngOnInit() {
-    this.checkLogin();
+    this.user = new UserModel();
+    // this.checkLogin();
   }
 
   checkLogin = () => {
@@ -26,17 +32,30 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin = () => {
-    if (this.userName === 'admin' && this.password === '123456') {
-      const userInfo = {
-        username: this.userName,
-        password: this.password
-      };
-      console.log('userInfo', userInfo);
+    const data = {
+      username: this.user.userName
+    };
+    this.userService.login(data)
+      .subscribe((res: any) => {
+        if (res.status === true) {
+          this.toastr.successToastr(res.message, 'Success!');
+          console.log('data', data.username);
+          this.getUserById(data.username);
+        } else {
+          this.toastr.errorToastr(res.message, 'Error!');
+        }
 
-      localStorage.setItem('user', JSON.stringify(userInfo));
-    } else {
-      this.error = -1;
-    }
+      });
+  }
+
+  getUserById = (userName: any) => {
+    this.userService.getUserById(userName)
+      .subscribe((res: any) => {
+        if (res.status === true) {
+          this.user = res.data;
+          localStorage.setItem('user', JSON.stringify(this.user));
+        }
+      });
   }
 
 }

@@ -15,6 +15,7 @@ import { LoginComponent } from './main/login/login.component';
 import { BindDataComponent } from './main/bind-data/bind-data.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './services/guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
       { enableTracing: false } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
