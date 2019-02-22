@@ -69,7 +69,7 @@ namespace PracticalAssignment.Services.ImplServices
                             LibraryId = model.LibraryId,
                             FileUrl = path,
                             Name = model.FileUrl.GetFilename(),
-                            Description = "Demo"
+                            Description = model.Description
                         };
                         Insert(dto);
                         status = true;

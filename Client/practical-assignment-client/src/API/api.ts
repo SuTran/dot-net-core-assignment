@@ -8,5 +8,8 @@ export const Urls = {
         GetListAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Library/get-all',
         InsertAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Library/insert',
     },
-
+    DocumentApi: {
+        GetDataByIdAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Document/get-all/',
+        UploadFileAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Document/upload-file',
+    },
 };

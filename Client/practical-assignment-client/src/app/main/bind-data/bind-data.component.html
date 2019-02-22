@@ -19,17 +19,12 @@
           <td>{{item.name}}</td>
           <td>{{item.description}}</td>
           <td>
-            <form>
-              <div class="form-group row">
-                <input type="file" class="col-10 form-control-file" id="exampleFormControlFile1">
-                <button type="button" class="col-2 btn btn-default" (click)="UploadFile()">
-                  <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                </button>
-              </div>
-            </form>
+            <button class="btn btn-default" (click)="open(uploadFile,handleId(item.id))">
+              <i class="fa fa-file" aria-hidden="true"></i>
+            </button>
           </td>
           <td>
-            <button type="button" class="btn btn-default" [routerLink]="[ '/detail-main-child', item.id ]">
+            <button class="btn btn-default" (click)="open(detailDocument,GetDocById(item.id))">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </button>
           </td>
@@ -39,7 +34,7 @@
   </div>
 
 
-  <!-- ng-modal -->
+  <!-- ng-add-new-library -->
   <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title" style="color: blue">Add New Library</h4>
@@ -56,13 +51,76 @@
         </div>
         <div class="form-group">
           <label for="exampleInputDescription">Description</label>
-          <input type="text" class="form-control" [(ngModel)]="libraryInput.description" [ngModelOptions]="{standalone: true}"
-            id="exampleInputDescription" placeholder="Enter description">
+          <input type="text" class="form-control" [(ngModel)]="libraryInput.description"
+            [ngModelOptions]="{standalone: true}" id="exampleInputDescription" placeholder="Enter description">
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');callAPI()">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click');Insert()">Save</button>
+    </div>
+  </ng-template>
+  <!-- ng-add-new-library -->
+
+  <!-- ng-upload-file -->
+  <ng-template #uploadFile let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="color: blue">Upload File</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlFile">File</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1"
+            (change)="handleFileInput($event.target.files)">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlDescription">Description</label>
+            <input type="text" class="form-control" 
+            [(ngModel)]="documentInput.description"
+            [ngModelOptions]="{standalone: true}"
+             id="exampleFormControlDescription" placeholder="Enter description">
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark"
+        (click)="modal.close('Save click');UploadFile()">Save</button>
+    </div>
+  </ng-template>
+  <!-- ng-upload-file -->
+
+  <!-- detail-document -->
+  <ng-template #detailDocument let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title" style="color: blue">Detail Library</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <table class="table table-striped table-custom">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">File Name</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of documentOutput; index as i">
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
     </div>
   </ng-template>
 </div>
