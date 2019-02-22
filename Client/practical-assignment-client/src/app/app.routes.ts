@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './main/login/login.component';
 import { BindDataComponent } from './main/bind-data/bind-data.component';
+import { AuthGuard } from './services/guard/auth.guard';
 
 export const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: '/index',
+        redirectTo: '/',
         pathMatch: 'full'
     },
     {
@@ -14,6 +15,7 @@ export const appRoutes: Routes = [
     },
     {
         path: 'data-binding',
-        component: BindDataComponent
+        component: BindDataComponent,
+        canActivate: [AuthGuard]
     }
 ];

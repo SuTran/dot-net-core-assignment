@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.user = new UserModel();
-    // this.checkLogin();
+    this.checkLogin();
   }
 
   checkLogin = () => {
     if (localStorage.getItem('user')) {
-      this.routerService.navigate(['main-child']);
+      this.routerService.navigate(['data-binding']);
     }
   }
 
@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(data)
       .subscribe((res: any) => {
         if (res.status === true) {
+          this.refresh();
           this.toastr.successToastr(res.message, 'Success!');
-          console.log('data', data.username);
           this.getUserById(data.username);
         } else {
           this.toastr.errorToastr(res.message, 'Error!');
@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  refresh = () => {
+    window.location.reload();
+  }
   getUserById = (userName: any) => {
     this.userService.getUserById(userName)
       .subscribe((res: any) => {

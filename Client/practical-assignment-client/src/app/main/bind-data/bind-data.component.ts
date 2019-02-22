@@ -25,6 +25,7 @@ export class BindDataComponent implements OnInit {
 
   fileToUpload: File;
   libraryId: string;
+  flatBtn: boolean;
   constructor(
     private libraryService: LibraryService,
     private documentService: DocumentService,
@@ -39,6 +40,7 @@ export class BindDataComponent implements OnInit {
     this.fileToUpload = null;
     this.libraryId = '';
     this.getData();
+    this.validateBtn();
   }
   // library
   getData = () => {
@@ -114,5 +116,14 @@ export class BindDataComponent implements OnInit {
   }
   handleId(id: string) {
     this.libraryId = id;
+  }
+
+  validateBtn = () => {
+    const data = JSON.parse(localStorage.getItem('user'));
+    if (data.isAdmin) {
+      this.flatBtn = true;
+    } else {
+      this.flatBtn = false;
+    }
   }
 }

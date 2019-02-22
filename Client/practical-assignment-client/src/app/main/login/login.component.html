@@ -1,16 +1,8 @@
-<!-- <div class="alert" *ngIf="error == -1">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-    &times;
-  </button>
-  <strong class="">
-    Username Or Password is wrong
-  </strong>
-</div> -->
 <h1>Login</h1>
 <form>
   <div class="form-group">
     <label for="formGroupExampleInput">Username</label>
-    <input type="text" class="form-control" [(ngModel)]="user.userName" [ngModelOptions]="{standalone: true}" id="formGroupExampleInput" placeholder="Example input">
+    <input type="text" class="form-control" [(ngModel)]="user.userName" [ngModelOptions]="{standalone: true}" id="formGroupExampleInput" placeholder="Enter username">
   </div>
   <button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>
 

@@ -1,5 +1,7 @@
 <div class="body-main">
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Library</button>
+ <div *ngIf="flatBtn">
+    <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Library</button>
+ </div>
 
   <div class="data-bind">
     <p class="h2 custom-h2">List Library</p>
