@@ -21,7 +21,7 @@ namespace PracticalAssignment.WebAPI.Controllers
             _libraryService = libraryService;
         }
 
-        [HttpGet("get-all")]
+        [HttpGet()]
         public async Task<IActionResult> GetAll()
         {
             var Result = new Res();
@@ -77,7 +77,6 @@ namespace PracticalAssignment.WebAPI.Controllers
             }
         }
 
-        [Route("insert")]
         [HttpPost]
         public async Task<IActionResult> InsertAsync(OutputLibraryViewModel dto)
         {

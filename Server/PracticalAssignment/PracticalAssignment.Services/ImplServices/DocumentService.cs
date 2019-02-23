@@ -4,6 +4,7 @@ using PracticalAssignment.Database.UnitOfWorks;
 using PracticalAssignment.DTO.ViewModels;
 using PracticalAssignment.Infrastructure.ContanstCommon;
 using PracticalAssignment.Infrastructure.Extensions;
+using PracticalAssignment.Infrastructure.LibCommon;
 using PracticalAssignment.Services.InterfaceServices;
 using System;
 using System.Collections.Generic;
@@ -26,19 +27,19 @@ namespace PracticalAssignment.Services.ImplServices
         public List<DocumentOutputViewModel> GetAllByLibraryId(Guid libraryId)
         {
             var query = _uow.Documents.GetAll()
-                .Where(x=>x.LibraryId==libraryId)
+                .Where(x => x.LibraryId == libraryId)
                 .Select(x => new DocumentOutputViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    FileUrl=x.FileUrl,
-                    LibraryId=x.LibraryId,
+                    FileUrl = x.FileUrl,
+                    LibraryId = x.LibraryId,
                     Description = x.Description
                 }).ToList();
             return query;
         }
 
-        public void UploadFile(FileInputViewModel model,out bool status, out string message)
+        public void UploadFile(FileInputViewModel model, out bool status, out string message)
         {
             try
             {
@@ -56,24 +57,34 @@ namespace PracticalAssignment.Services.ImplServices
                         var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/");
 
                         var folder = Directory.CreateDirectory(rootPath + libData.Name);
-                        //var subPath = Path.Combine(rootPath, libData.Name);
                         var newpath = Path.Combine(rootPath, libData.Name);
+
                         var path = Path.Combine(newpath, model.FileUrl.GetFilename());
 
-                        using (var stream = new FileStream(path, FileMode.Create))
+                        //string[] typeFile = new[] { Path.GetExtension(model.FileUrl.FileName) }; 
+
+                        if (!Validate.CheckFileType(path))
                         {
-                            model.FileUrl.CopyToAsync(stream);
+                            status = false;
+                            message = MesssageContant.CHECK_FILE ;                                
                         }
-                        var dto = new DocumentViewModel
+                        else
                         {
-                            LibraryId = model.LibraryId,
-                            FileUrl = path,
-                            Name = model.FileUrl.GetFilename(),
-                            Description = model.Description
-                        };
-                        Insert(dto);
-                        status = true;
-                        message = MesssageContant.UPLOAD_SUCCESS;
+                            using (var stream = new FileStream(path, FileMode.Create))
+                            {
+                                model.FileUrl.CopyToAsync(stream);
+                            }
+                            var dto = new DocumentViewModel
+                            {
+                                LibraryId = model.LibraryId,
+                                FileUrl = path,
+                                Name = model.FileUrl.GetFilename(),
+                                Description = model.Description
+                            };
+                            var data = Insert(dto);
+                            status = data.Status;
+                            message = MesssageContant.UPLOAD_SUCCESS;
+                        }                      
                     }
                     else
                     {
@@ -90,21 +101,45 @@ namespace PracticalAssignment.Services.ImplServices
 
         }
 
-        private void Insert(DocumentViewModel dto)
+        private Res Insert(DocumentViewModel dto)
         {
             try
             {
-                var model = new Document
+                if (dto.Name.Length > 255)
                 {
-                    Id = Guid.NewGuid(),
-                    Name = dto.Name,
-                    FileUrl=dto.FileUrl,
-                    Description = dto.Description,
-                    LibraryId=dto.LibraryId 
-                };
+                    return new Res()
+                    {
+                        Status = false,
+                        Message = MesssageContant.VALIDATE_NAME
+                    };
+                }
+                else if (dto.Name.Length > 255)
+                {
+                    return new Res()
+                    {
+                        Status = false,
+                        Message = MesssageContant.VALIDATE_FILE_NAME
+                    };
+                }
+                else
+                {
+                    var model = new Document
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = dto.Name,
+                        FileUrl = dto.FileUrl,
+                        Description = dto.Description,
+                        LibraryId = dto.LibraryId
+                    };
 
-                _uow.Documents.Insert(model);
-                _uow.Save();
+                    _uow.Documents.Insert(model);
+                    _uow.Save();
+                    return new Res()
+                    {
+                        Status = true,
+                        Message = MesssageContant.SAVE_SUCCESS
+                    };
+                }
 
             }
             catch (Exception ex)

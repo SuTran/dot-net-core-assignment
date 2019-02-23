@@ -21,7 +21,7 @@ namespace PracticalAssignment.WebAPI.Controllers
             _documentService = documentService;
         }
 
-        [HttpGet("get-all/{libraryId}")]
+        [HttpGet("{libraryId}")]
         public async Task<IActionResult> GetById(Guid libraryId)
         {
             var Result = new Res();
@@ -49,9 +49,9 @@ namespace PracticalAssignment.WebAPI.Controllers
             }
         }
 
-        [Route("upload-file")]
+
         [HttpPost]
-        public async Task<IActionResult> InsertAsync([FromForm]FileInputViewModel model)
+        public async Task<IActionResult> UploadFileAsync([FromForm]FileInputViewModel model)
         { 
             var status = false;
             var message = string.Empty;

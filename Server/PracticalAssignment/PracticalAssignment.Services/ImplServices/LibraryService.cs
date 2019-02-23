@@ -54,6 +54,11 @@ namespace PracticalAssignment.Services.ImplServices
                     status = false;
                     message = MesssageContant.EMPTY_NAME;
                 }
+                else if(dto.Name.Length > 255)
+                {
+                    status = false;
+                    message = MesssageContant.VALIDATE_NAME;
+                }
                 else
                 {
                     if(GetLibraryByName(dto.Name)==false)

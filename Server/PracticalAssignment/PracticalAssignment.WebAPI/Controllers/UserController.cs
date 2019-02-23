@@ -21,7 +21,6 @@ namespace PracticalAssignment.WebAPI.Controllers
             _userService = userService;
         }
 
-        [Route("login")]
         [HttpPost]
         public async Task<IActionResult> LoginAsync(LoginViewModel username)
         {

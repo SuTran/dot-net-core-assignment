@@ -6,6 +6,10 @@ namespace PracticalAssignment.Infrastructure.ContanstCommon
 {
     public struct MesssageContant
     {
+        public const string VALIDATE_NAME = "Enter name exceeds 255 characters";
+        public const string VALIDATE_FILE_NAME = "Enter file name exceeds 255 characters";
+        public const string CHECK_FILE = "Support file type pdf ";
+
         public const string EMPTY_NAME = "Please enter library name";
         public const string DUPLICATE_NAME = "Duplicate library name";
 
@@ -25,6 +29,7 @@ namespace PracticalAssignment.Infrastructure.ContanstCommon
 
         public const string LOGIN_SUCCESS = "Login successfully";
         public const string LOGIN_FAIL = "Incorrect username";
+
     }
 
     public struct MessageResponse

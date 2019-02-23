@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticalAssignment.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticalAssignment.DTO", "PracticalAssignment.DTO\PracticalAssignment.DTO.csproj", "{BEEE8C4D-822B-4340-BB63-CFBF79E8D1A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticalAssignment.Infrastructure", "PracticalAssignment.Infrastructure\PracticalAssignment.Infrastructure.csproj", "{593501DD-D08A-4528-9A6B-7059E4B6E417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticalAssignment.Infrastructure", "PracticalAssignment.Infrastructure\PracticalAssignment.Infrastructure.csproj", "{593501DD-D08A-4528-9A6B-7059E4B6E417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,13 @@
+Account SQL
+User:sa
+Pass: dev123456@
+
+Account FTP-Upload
+Link : ftp://172.25.20.25/
+User: tam.nguyenthanh
+Pass: Fpt1234567
+
+Link API:
+http://172.25.20.25/APIs/swagger/index.html
+link API Test :
+http://172.25.20.25/APIs/api/Regions

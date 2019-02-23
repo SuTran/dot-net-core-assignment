@@ -20,6 +20,7 @@ using PracticalAssignment.Database.Repositories;
 using PracticalAssignment.Database.UnitOfWorks;
 using PracticalAssignment.Services.ImplServices;
 using PracticalAssignment.Services.InterfaceServices;
+using PracticalAssignment.WebAPI.Infrastructure.Filters;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace PracticalAssignment.WebAPI
@@ -49,6 +50,11 @@ namespace PracticalAssignment.WebAPI
                         .AllowCredentials());
             });
 
+            services
+               .AddMvc(options =>
+               {
+                   options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+               });
 
             services.AddScoped(typeof(IDesignTimeDbContextFactory<AppDbContext>), typeof(DbContextFactory));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
