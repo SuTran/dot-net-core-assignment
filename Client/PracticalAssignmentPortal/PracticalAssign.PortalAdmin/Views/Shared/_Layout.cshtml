@@ -18,40 +18,18 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PracticalAssign.PortalAdmin</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            <p>10 + 20 = {{10+20}}</p>
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+    <div ng-include="'/src/views/layout/index.html'"></div>
+    @RenderBody()
+    @*<div ng-include="'/src/views/layout/header.html'"></div>
         <div class="container">
-            &copy; 2019 - PracticalAssign.PortalAdmin - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <partial name="_CookieConsentPartial" />
+            <main role="main" class="pb-3">
+                <p>10 + 20 = {{10+20}}</p>
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+
+        <div ng-include="'/src/views/layout/footer.html'"></div>*@
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -60,7 +38,17 @@
 
     <environment include="Development">
         <script src="~/lib/angular.js/angular.js"></script>
+        <script src="~/lib/angular.js/angular-route.js"></script>
+        <script src="~/lib/angular.js/angular-sanitize.js"></script>
+        <script src="~/lib/oclazyload/ocLazyLoad.js"></script>
+        <script src="~/lib/angular-ui-router/angular-ui-router.js"></script>
+        <script src="~/lib/bootbox/bootbox.js"></script>
+
         <script src="~/src/app/app.js"></script>
+        <script src="~/src/api/api.js"></script>
+        <script src="~/src/common/common.js"></script>
+        <script src="~/src/services/service.js"></script>
+        <script src="~/src/controllers/homeCtrl/homeCtrl.js"></script>
     </environment>
 
     <environment exclude="Development">

@@ -1,0 +1,11 @@
+﻿<div ng-controller="homeCtrl">
+    <div ng-include="'views/common/header.html'"></div>
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            <p>10 + 20 = {{10+20}}</p>
+            <ui-view>Loading</ui-view>
+        </main>
+    </div>
+    <div ng-include="'views/common/footer.html'"></div>
+</div>

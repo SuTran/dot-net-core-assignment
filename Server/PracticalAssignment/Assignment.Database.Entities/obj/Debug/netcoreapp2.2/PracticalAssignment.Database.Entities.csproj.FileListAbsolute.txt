@@ -6,3 +6,4 @@ E:\SourceCode\Backend\NET CORE\Example\dot-net-core-assignment\Server\PracticalA
 E:\SourceCode\Backend\NET CORE\Example\dot-net-core-assignment\Server\PracticalAssignment\Assignment.Database.Entities\obj\Debug\netcoreapp2.2\PracticalAssignment.Database.Entities.AssemblyInfo.cs
 E:\SourceCode\Backend\NET CORE\Example\dot-net-core-assignment\Server\PracticalAssignment\Assignment.Database.Entities\obj\Debug\netcoreapp2.2\PracticalAssignment.Database.Entities.dll
 E:\SourceCode\Backend\NET CORE\Example\dot-net-core-assignment\Server\PracticalAssignment\Assignment.Database.Entities\obj\Debug\netcoreapp2.2\PracticalAssignment.Database.Entities.pdb
+E:\SourceCode\Backend\NET CORE\Example\dot-net-core-assignment\Server\PracticalAssignment\Assignment.Database.Entities\obj\Debug\netcoreapp2.2\PracticalAssignment.Database.Entities.csprojAssemblyReference.cache

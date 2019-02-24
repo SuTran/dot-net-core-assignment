@@ -24,3 +24,7 @@ Server/PracticalAssignment/PracticalAssignment\.DTO/bin/
 Server/PracticalAssignment/PracticalAssignment\.Infrastructure/bin/
 
 Server/PracticalAssignment/PracticalAssignment\.Infrastructure/obj/
+
+Client/PracticalAssignmentPortal/\.vs/
+
+Server/PracticalAssignment/Assignment\.Database\.Entities/obj/

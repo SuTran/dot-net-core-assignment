@@ -25,7 +25,10 @@
     {
       "library": "angular-ui-router@1.0.22",
       "destination": "wwwroot/lib/angular-ui-router"
+    },
+    {
+      "library": "jquery-toast-plugin@1.3.2",
+      "destination": "wwwroot/lib/jquery-toast-plugin"
     }
-    
   ]
 }

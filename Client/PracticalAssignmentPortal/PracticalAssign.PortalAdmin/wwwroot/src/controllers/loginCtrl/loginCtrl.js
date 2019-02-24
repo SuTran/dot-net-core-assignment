@@ -10,6 +10,9 @@ AuthCtrl.$inject = [
 ];
 function AuthCtrl($scope, $stateParams, $rootScope, $state, dataService, $httpParamSerializer, $element) {
     console.log("dmm");
+     $scope.user = {
+        userName: ''
+    };
     this.$onInit = () => {
         console.log("thuy doan");
         //let selector = $scope.Login;
@@ -21,6 +24,32 @@ function AuthCtrl($scope, $stateParams, $rootScope, $state, dataService, $httpPa
         //jQuery(selector.Controls.btnLogin).click(() => {
         //    selector.Sigin();
         //});
+    };
+    $scope.Login = () => {
+        const objData = {
+            username: $scope.user.userName
+        };
+        console.log('demo', objData.username);
+        console.log('url', Urls.UserApi.LoginAsync);
+        dataService.PostData(Urls.UserApi.LoginAsync, objData)
+            .then((res) => {
+                let data = res.data;
+                console.log(res.data);
+                if (data.status) {
+                    $scope.ArrCatChild = data.Data.Records;
+                    $scope.totalCount = data.Data.TotalCounts;
+                    $scope.pagesCount = data.Data.TotalPages;
+                    $scope.page = data.Data.Page;
+                    AngularjsInterFace.AlertSuccess(data.Message);
+                }
+                else {
+                    AngularjsInterFace.AlertError(data.Message);
+                }
+            })
+            .catch((data) => {
+                AngularjsInterFace.AlertError(data.Message);
+                console.log(data);
+            });
     };
     //$scope.Login = {
     //    console.log("thuy doan");

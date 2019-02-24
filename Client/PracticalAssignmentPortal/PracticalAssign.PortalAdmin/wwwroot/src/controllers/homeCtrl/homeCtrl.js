@@ -1,6 +1,7 @@
-﻿appHome.controller("homeCtrl", homeController);
-catChildController.$inject = ["$scope", "dataService"];
-function catChildController($scope, dataService, $ngBootbox) {
+﻿appHome.controller("homeCtrl", HomeController);
+HomeController.$inject = ["$scope", "dataService"];
+function HomeController($scope, dataService) {
     this.$onInit = () => {
+        console.log('home')
     };
 }

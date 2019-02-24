@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "angular.js@1.7.7",
+      "destination": "content/lib/angular.js"
+    },
+    {
+      "library": "jquery@3.3.1",
+      "destination": "content/lib/jquery"
+    },
+    {
+      "library": "bootbox.js@4.4.0",
+      "destination": "content/lib/bootbox"
+    },
+    {
+      "library": "font-awesome@4.7.0",
+      "destination": "content/lib/font-awesome"
+    },
+    {
+      "library": "oclazyload@1.1.0",
+      "destination": "content/lib/oclazyload"
+    },
+    {
+      "library": "angular-ui-grid@4.7.1",
+      "destination": "content/lib/angular-ui-grid"
+    },
+    {
+      "library": "angular-ui-router@1.0.22",
+      "destination": "content/lib/angular-ui-router"
+    }
+  ]
+}
