@@ -128,6 +128,19 @@ var AngularjsInterFace = {
     //    coolFile.filename = file.name;
     //    reader.readAsBinaryString(file);
     //},
+
+    DisplayLoading: (opts) => {
+        var defaultOpt = jQuery.extend({
+            background: "rgba(41, 39, 39, 0.8)",
+            imageColor: "#ffff"
+        }, opts);
+        jQuery.LoadingOverlay("show", defaultOpt);
+    },
+
+    HideLoadingNew: () => {
+        jQuery.LoadingOverlay("hide");
+    },
+
     ShowLoading: function () {
         jQuery("#dvLoadingRequest").css("display", "block");
     },
@@ -244,144 +257,3 @@ var AngularjsInterFace = {
         jQuery("input[data-idCard-input]").inputmask("9999-99-999");
     }
 }
-//var AngularjsServerRealTime = {
-//    ServerBase: ConfigApiUrl.SignalrHub,
-//    SignalRInit: () => {
-//        let tryingToReconnect = false;
-//        jQuery.connection.hub.url = AngularjsServerRealTime.ServerBase;
-//        jQuery.connection.hub.logging = ConfigApiUrl.SignalrLog;
-//        /*==Start-Hubs==*/
-//        jQuery.connection.hub.start({ transport: ["webSockets", "longPolling"] })
-//            .done(() => {
-//                jQuery("div[data-status-bar]").remove();
-//            })
-//            .fail(() => {
-//                AngularjsInterFace.AlertError("Không thể kết nối tới máy chủ thời gian thực");
-//            });
-//        /*==Notify the user about disconnections==*/
-//        jQuery.connection.hub.connectionSlow(() => {
-//            AngularjsServerRealTime.InitStatusBar("Thông báo", "Có lỗi xảy ra trong quá trình kết nối");
-//        });
-//        /*==Reconnecting==*/
-//        jQuery.connection.hub.reconnecting(() => {
-//            AngularjsServerRealTime.InitStatusBar("Thông báo", "Đang kết nối lại với máy chủ...");
-//            tryingToReconnect = true;
-//        });
-//        /*==Reconnected==*/
-//        jQuery.connection.hub.reconnected(() => {
-//            AngularjsInterFace.AlertSuccess("Kết nối lại thành công");
-//            jQuery("div[data-status-bar]").remove();
-//        });
-//        /*==Disconnected==*/
-//        jQuery.connection.hub.disconnected(() => {
-//            if (tryingToReconnect) {
-//                jQuery.connection.hub.start({ transport: ["webSockets", "longPolling"] });
-//            }
-//        });
-//    },
-//    InitStatusBar: (_title, _message) => {
-//        let html = "<div data-status-bar class=\"alert alert-danger status-bar\">";
-//        html += "<strong>" + _title + " " + "</strong>" + " " + _message;
-//        html += "</div>";
-//        jQuery("body").prepend(html);
-//    }
-//};
-var KendoUI = {
-    InitWindow: (idWindow, title, width, height, opts) => {
-        let window = jQuery(idWindow);
-        let defaultOpts = jQuery.extend({
-            title: title,
-            width: width,
-            height: height,
-            visible: false,
-            resizable: false,
-            modal: true,
-            pinned: true,
-            actions: ["Maximize"],
-        }, opts);
-        window.kendoWindow(defaultOpts).data("kendoWindow").center();
-    },
-    OpenWindow: (idWindow, title, width, height, opts) => {
-        let window = jQuery(idWindow);
-        let defaultOpts = jQuery.extend({
-            title: title,
-            width: width,
-            height: height,
-            visible: false,
-            resizable: false,
-            modal: true,
-            pinned: true,
-            actions: ["Maximize"],
-        }, opts);
-        window.kendoWindow(defaultOpts).data("kendoWindow").center().open();
-    },
-    CloseWindow: (idWindow) => {
-        let window = jQuery(idWindow);
-        window.data("kendoWindow").close();
-    },
-    GridResize: (headerId, contentId, gridId) => {
-        let header = jQuery(headerId);
-        let content = jQuery(contentId);
-        let grid = jQuery(gridId);
-
-        //Other variables
-        let minimumAcceptableGridHeight = 350; //This is roughly 5 rows 
-        let otherElementsHeight = 0;
-
-        //Get Window Height 
-        let windowHeight = jQuery(window).innerHeight();
-
-        //Get Header Height if its existing
-        let hasHeader = header.length;
-        let headerHeight = hasHeader ? header.outerHeight(true) : 0;
-
-        //Get the Grid Element and Areas Inside It
-        var contentArea = grid.find(".k-grid-content");  //This is the content Where Grid is located
-        let otherGridElements = grid.children().not(".k-grid-content"); //This is anything ather than the Grid iteslf like header, commands, etc
-
-        //Calcualte all Grid elements height
-        otherGridElements.each(function () {
-            otherElementsHeight += jQuery(this).outerHeight(true);
-        });
-
-        //Get other elements same level as Grid
-        let parentDiv = grid.parent("div");
-
-        let hasMainContent = parentDiv.length;
-        if (hasMainContent) {
-            let otherSiblingElements = content.children()
-                .not(gridId)
-                .not("script");
-
-            //Calculate all Sibling element height
-            otherSiblingElements.each(function () {
-                otherElementsHeight += jQuery(this).outerHeight(true);
-            });
-        }
-
-        //Padding you want to apply below your page
-        let bottomPadding = 0;
-
-        //Check if Calculated height is below threshold
-        let calculatedHeight = windowHeight - headerHeight - otherElementsHeight - bottomPadding;
-        let finalHeight = calculatedHeight < minimumAcceptableGridHeight ? minimumAcceptableGridHeight : calculatedHeight;
-
-        //Apply the height for the content area
-        contentArea.height(finalHeight);
-    },
-    FixHeightContent: (PaddingHeight,ContentId) => {
-        let LayoutOption = {
-            PaddingHeight: PaddingHeight
-        };
-        let Height = jQuery(window).height() - LayoutOption.PaddingHeight;
-        jQuery(ContentId).css("height", Height);
-    },
-    HideColumn: (idGrid, indexCol) => {
-        let grid = jQuery(idGrid).data("kendoGrid");
-        grid.hideColumn(indexCol);
-    },
-    ShowColumn: (idGrid, indexCol) => {
-        let grid = jQuery(idGrid).data("kendoGrid");
-        grid.showColumn(indexCol);
-    },
-};

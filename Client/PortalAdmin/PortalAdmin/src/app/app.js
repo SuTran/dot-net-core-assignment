@@ -27,8 +27,9 @@ let nested_login = {
 let nested_pages= {
     url: "/",
     cache: false,
+    abstract: false,
     templateUrl: "views/common/layout-home.html",
-    controller: "loginCtrl",
+    controller: "homeCtrl",
     resolve: {
         loadMyCtrl: ["$ocLazyLoad", ($ocLazyLoad) => {
             return $ocLazyLoad.load({
@@ -46,7 +47,7 @@ let nested_pages_home = {
     url: "home",
     cache: false,
     templateUrl: "views/pages/home/home.html",
-    controller: "loginCtrl",
+    controller: "homeCtrl",
     resolve: {
         loadMyCtrl: ["$ocLazyLoad", ($ocLazyLoad) => {
             return $ocLazyLoad.load({
@@ -64,7 +65,7 @@ let nested_pages_library = {
     url: "library",
     cache: false,
     templateUrl: "views/pages/library/library.html",
-    controller: "loginCtrl",
+    controller: "libraryCtrl",
     resolve: {
         loadMyCtrl: ["$ocLazyLoad", ($ocLazyLoad) => {
             return $ocLazyLoad.load({
@@ -174,7 +175,7 @@ appHome.run(($state, $rootScope, $location, $http, $templateCache) => {
     $rootScope.$on('$locationChangeSuccess', function () {
         var ckAuth = AngularjsCommon.GetlocalStorage(AngularjsToken.UserName);
         if (ckAuth && ckAuth.length) {
-            $state.go("pages.home");
+            $state.go("home");
         } else {
             $state.go("login");
         }

@@ -3,10 +3,10 @@ HomeController.$inject = ["$scope", "dataService", '$state'];
 function HomeController($scope, dataService, $state) {
     $scope.flatBtn = false;
     $scope.user = {
-        userName: ''
+        userName: '',
+        isAdmin: false
     };
     this.$onInit = () => {
-        console.log('home');
         $scope.CheckLogin();
     };
 
@@ -15,10 +15,8 @@ function HomeController($scope, dataService, $state) {
             const data = AngularjsCommon.GetlocalStorage(AngularjsToken.UserName);
             if (data !== null) {
                 var user = JSON.parse(data);
-                console.log('parse', JSON.parse(data));
                 $scope.user.userName = user.username;
-                console.log('user', $scope.user.userName);
-
+                $scope.user.isAdmin = user.isAdmin;
                 $scope.flatBtn = true;
             } else {
                 $scope.flatBtn = false;

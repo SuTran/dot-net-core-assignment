@@ -1,3 +1,139 @@
-﻿<dinov ng-controller="libraryCtrl">
-    <h1>library</h1>
-</dinov>
+﻿<div ng-controller="libraryCtrl">
+    <!-- Button trigger modal -->
+    <button type="button" ng-if="user.isAdmin" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add Library
+    </button>
+
+    <div class="data-bind">
+        <p class="h2 custom-h2">List Library</p>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Upload File</th>
+                    <th scope="col">Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in ArrLibrary">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                    <td>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadFileModal"
+                                ng-click="InsertUploadFile(item.id)"  >
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#detailDocumentModal"
+                                ng-click="GetDocById(item.id)">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal Add Library -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputName">Name</label>
+                            <input type="text" class="form-control" ng-model="item.name" aria-describedby="emailHelp" placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputDescription">Description</label>
+                            <input type="text" class="form-control" ng-model="item.description" id="exampleInputDescription" placeholder="Enter description">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="Insert()" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Add Library -->
+    <!-- Modal Upload File -->
+    <div class="modal fade" id="uploadFileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile">File</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                             file-model="inputControl.fileUrl">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlDescription">Description</label>
+                            <input type="text" class="form-control"
+                                   id="exampleFormControlDescription" placeholder="Enter description">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="UploadFile()" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Upload File -->
+    <!-- Modal Detail Document -->
+    <div class="modal fade" id="detailDocumentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Library</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped table-custom">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in ArrDocument">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.name}}</td>
+                                <td>{{item.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Detail Document  -->
+</div>

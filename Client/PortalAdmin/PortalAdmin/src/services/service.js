@@ -158,3 +158,13 @@
         eval(obj).value = str.toUpperCase();
     }
 });
+appHome.service("dataServiceFileUpload", function ($http) {
+    this.UpLoadFile = function (uploadUrl, _formData) {
+        return $http.post(uploadUrl, _formData, {
+            headers: {
+                //"transformRequest": angular.identity,
+                "Content-Type": undefined
+            }
+        });
+    };
+});
