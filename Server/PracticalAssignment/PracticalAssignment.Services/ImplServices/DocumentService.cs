@@ -43,7 +43,7 @@ namespace PracticalAssignment.Services.ImplServices
         {
             try
             {
-                if (model.FileUrl == null || model.FileUrl.Length == 0)
+                if (model.File == null || model.File.Length == 0)
                 {
                     status = false;
                     message = MesssageContant.FILE_NULL;
@@ -56,35 +56,38 @@ namespace PracticalAssignment.Services.ImplServices
                     {
                         var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/");
 
-                        var folder = Directory.CreateDirectory(rootPath + libData.Name);
+                        if (!Directory.Exists(rootPath + libData.Name))
+                        {
+                            var folder = Directory.CreateDirectory(rootPath + libData.Name);
+                        }
                         var newpath = Path.Combine(rootPath, libData.Name);
 
-                        var path = Path.Combine(newpath, model.FileUrl.GetFilename());
+                        var path = Path.Combine(newpath, model.File.GetFilename());
 
                         //string[] typeFile = new[] { Path.GetExtension(model.FileUrl.FileName) }; 
 
                         if (!Validate.CheckFileType(path))
                         {
                             status = false;
-                            message = MesssageContant.CHECK_FILE ;                                
+                            message = MesssageContant.CHECK_FILE;
                         }
                         else
                         {
                             using (var stream = new FileStream(path, FileMode.Create))
                             {
-                                model.FileUrl.CopyToAsync(stream);
+                                model.File.CopyToAsync(stream);
                             }
                             var dto = new DocumentViewModel
                             {
                                 LibraryId = model.LibraryId,
                                 FileUrl = path,
-                                Name = model.FileUrl.GetFilename(),
+                                Name = model.File.GetFilename(),
                                 Description = model.Description
                             };
                             var data = Insert(dto);
                             status = data.Status;
                             message = MesssageContant.UPLOAD_SUCCESS;
-                        }                      
+                        }
                     }
                     else
                     {

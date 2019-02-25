@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PracticalAssignment.Infrastructure.Extensions
 {
@@ -74,6 +75,20 @@ namespace PracticalAssignment.Infrastructure.Extensions
                     return true;
                 default:
                     return false;
+            }
+        }
+
+        public static bool CheckNameCharacter(string valueName)
+        {
+            var validateRegex = new Regex(@"[~`!@#$%^&*()-+=|\{}':;.,<>/?]");
+
+            if (validateRegex.IsMatch(valueName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

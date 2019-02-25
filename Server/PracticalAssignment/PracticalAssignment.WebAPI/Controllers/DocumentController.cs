@@ -21,7 +21,7 @@ namespace PracticalAssignment.WebAPI.Controllers
             _documentService = documentService;
         }
 
-        [HttpGet("{libraryId}")]
+        [HttpGet()]
         public async Task<IActionResult> GetById(Guid libraryId)
         {
             var Result = new Res();

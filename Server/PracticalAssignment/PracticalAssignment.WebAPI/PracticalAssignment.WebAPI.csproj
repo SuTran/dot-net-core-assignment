@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\Java Core\" />
+    <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 
 </Project>

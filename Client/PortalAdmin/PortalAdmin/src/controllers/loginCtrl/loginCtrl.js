@@ -13,7 +13,7 @@ function LoginController($scope, $state,dataService) {
     this.$onInit = () => {
 
     };
-    $scope.Login = () => {
+    $scope.login = () => {
         const objData = {
             username: $scope.user.userName
         };
@@ -21,7 +21,7 @@ function LoginController($scope, $state,dataService) {
             .then((res) => {
                 let data = res.data;
                 if (data.status) {
-                    $scope.GetUser(objData.username);
+                    $scope.getUser(objData.username);
                     AngularjsInterFace.AlertSuccess(data.message);
                 }
                 else {
@@ -32,7 +32,7 @@ function LoginController($scope, $state,dataService) {
                 AngularjsInterFace.AlertError(data.message);
             });
     };
-    $scope.GetUser = (userName) => {
+    $scope.getUser = (userName) => {
         dataService.GetData(Urls.UserApi.GetUserByIdAsync + userName, [])
             .then((res) => {
                 let data = res.data;

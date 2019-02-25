@@ -6,14 +6,14 @@ function libraryController($scope, dataService, $stateParams, $state, dataServic
         description: ''
     };
     this.$onInit = () => {
-        $scope.GeListLibrary();
+        $scope.geListLibrary();
     };
     $scope.inputControl = {
-        fileUrl: null,
+        file: null,
         description: '',
         libId: '',
     }
-    $scope.GeListLibrary = () => {
+    $scope.geListLibrary = () => {
         AngularjsInterFace.DisplayLoading();
         dataService.GetData(Urls.LibraryApi.GetListAsync, [])
             .then((res) => {
@@ -32,7 +32,7 @@ function libraryController($scope, dataService, $stateParams, $state, dataServic
             });
     }
 
-    $scope.GetDocById = (id) => {
+    $scope.getDocById = (id) => {
         AngularjsInterFace.DisplayLoading();
         dataService.GetData(Urls.DocumentApi.GetDataByIdAsync + id, [])
             .then((res) => {
@@ -51,7 +51,7 @@ function libraryController($scope, dataService, $stateParams, $state, dataServic
             });
     }
 
-    $scope.Insert = () => {
+    $scope.insert = () => {
         var objData = {
             name: $scope.item.name,
             description: $scope.item.description
@@ -62,7 +62,7 @@ function libraryController($scope, dataService, $stateParams, $state, dataServic
                 let data = res.data;
                 if (data.status) {
                     AngularjsInterFace.AlertSuccess(data.message);
-                    $scope.GeListLibrary();
+                    $scope.geListLibrary();
                 }
                 else {
                     AngularjsInterFace.AlertError(data.message);
@@ -75,13 +75,13 @@ function libraryController($scope, dataService, $stateParams, $state, dataServic
             });
     }
 
-    $scope.InsertUploadFile = (id) => {
+    $scope.insertUploadFile = (id) => {
         $scope.inputControl.libId = id;
     }
 
-    $scope.UploadFile = () => {
+    $scope.uploadFile = () => {
         var formdata = new FormData();
-        formdata.append("FileUrl", $scope.inputControl.fileUrl);
+        formdata.append("File", $scope.inputControl.file);
         formdata.append("Description", $scope.inputControl.description);
         formdata.append("LibraryId", $scope.inputControl.libId);
 
@@ -91,7 +91,7 @@ function libraryController($scope, dataService, $stateParams, $state, dataServic
                 let data = res.data;
                 if (data.status) {
                     AngularjsInterFace.AlertSuccess(data.message);
-                    $scope.GeListLibrary();
+                    $scope.geListLibrary();
                 }
                 else {
                     AngularjsInterFace.AlertError(data.message);

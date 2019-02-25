@@ -8,7 +8,7 @@ let Urls = {
         InsertAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Library'
     },
     DocumentApi: {
-        GetDataByIdAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Document/',
+        GetDataByIdAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Document?libraryId=',
         UploadFileAsync: ApiBase.BaseUrl + ApiBase.EndPoint + 'Document'
     },
     UserApi: {

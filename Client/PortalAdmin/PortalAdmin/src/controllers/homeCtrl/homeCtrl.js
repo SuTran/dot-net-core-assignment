@@ -7,10 +7,10 @@ function HomeController($scope, dataService, $state) {
         isAdmin: false
     };
     this.$onInit = () => {
-        $scope.CheckLogin();
+        $scope.checkLogin();
     };
 
-    $scope.CheckLogin = () => {
+    $scope.checkLogin = () => {
         try {
             const data = AngularjsCommon.GetlocalStorage(AngularjsToken.UserName);
             if (data !== null) {
@@ -27,7 +27,7 @@ function HomeController($scope, dataService, $state) {
         }
     }
 
-    $scope.Logout = () => {
+    $scope.logout = () => {
         AngularjsCommon.RemoveLocalStorage(AngularjsToken.UserName);
         $state.go('login');
     }

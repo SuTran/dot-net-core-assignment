@@ -2,6 +2,7 @@
 using PracticalAssignment.Database.UnitOfWorks;
 using PracticalAssignment.DTO.OutputModels;
 using PracticalAssignment.Infrastructure.ContanstCommon;
+using PracticalAssignment.Infrastructure.Extensions;
 using PracticalAssignment.Services.InterfaceServices;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,11 @@ namespace PracticalAssignment.Services.ImplServices
                 {
                     status = false;
                     message = MesssageContant.VALIDATE_NAME;
+                }
+                else if (Validate.CheckNameCharacter(dto.Name))
+                {
+                    status = false;
+                    message = MesssageContant.VALIDATE_NAME_CHARACTERS;
                 }
                 else
                 {
